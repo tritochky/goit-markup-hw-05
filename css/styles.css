@@ -140,8 +140,22 @@ input[type="radio"].visually-hidden {
 }
 
 .navigation-list-link {
+  position: relative;
   color: var(--color-text-title);
   padding: 32px 0;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.current.navigation-list-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent-color);
 }
 
 .current,
@@ -169,6 +183,7 @@ input[type="radio"].visually-hidden {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .contacts-icon {
@@ -293,6 +308,27 @@ input[type="radio"].visually-hidden {
 .process-list-item:not(:last-child) {
   margin-right: 30px;
 }
+
+.process-wrapper {
+  position: relative;
+}
+
+.process-title {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.143;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 26px 0;
+  color: var(--extra-color);
+  background: rgba(47, 48, 58, 0.8);
+}
 /*==============END WHAT WE DO================*/
 
 /*==============TEAM================*/
@@ -359,6 +395,7 @@ input[type="radio"].visually-hidden {
   height: 100%;
   background-color: var(--extra-color);
   border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .current-link,
@@ -375,6 +412,7 @@ input[type="radio"].visually-hidden {
 
 .social-links-icon {
   fill: #afb1b8;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 /*==============END TEAM================*/
 
@@ -393,6 +431,7 @@ input[type="radio"].visually-hidden {
   border: 1px solid var(--color-client);
   box-sizing: border-box;
   border-radius: 4px;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .current-logo,
@@ -409,6 +448,7 @@ input[type="radio"].visually-hidden {
 
 .client-logo {
   fill: var(--color-client);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-list-item:not(:last-child) {
@@ -447,6 +487,9 @@ input[type="radio"].visually-hidden {
   border: none;
   padding: 6px 22px;
   cursor: pointer;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .current-btn,
@@ -454,6 +497,8 @@ input[type="radio"].visually-hidden {
 .filter-button:focus {
   color: var(--extra-color);
   background-color: var(--accent-color);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.12);
 }
 
 .portfolio-list {
@@ -469,6 +514,28 @@ input[type="radio"].visually-hidden {
   box-sizing: border-box;
   margin: 15px;
   outline: 1px solid #eeeeee;
+}
+
+.portfolio-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.556;
+  letter-spacing: 0.03em;
+  color: var(--extra-color);
+  padding: 62px 24px;
+  background-color: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .text {
@@ -494,6 +561,7 @@ input[type="radio"].visually-hidden {
 
 .portfolio-list-link {
   display: inline-block;
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-list-link:hover,
@@ -503,6 +571,11 @@ input[type="radio"].visually-hidden {
   box-sizing: border-box;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.portfolio-list-link:hover .overlay,
+.portfolio-list-link:focus .overlay {
+  transform: translateY(0);
 }
 /*==============END PORTFOLIO================*/
 
@@ -587,11 +660,11 @@ input[type="radio"].visually-hidden {
   background-color: var(--accent-color);
 }
 
-.footer .current-link .social-links-icon,
+/* .footer .current-link .social-links-icon,
 .footer .social-links-link:hover .social-links-icon,
 .footer .social-links-link:focus .social-links-icon {
   fill: var(--extra-color);
-}
+} */
 
 .footer .social-links-icon {
   fill: var(--extra-color);
@@ -601,3 +674,45 @@ input[type="radio"].visually-hidden {
   margin-right: 10px;
 }
 /*==============END FOOTER================*/
+
+/*==============MODAL-WINDOW================*/
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 528px;
+  height: 580px;
+  background-color: var(--extra-color);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  background: var(--extra-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
